@@ -17,6 +17,8 @@
 package org.apache.lucene.util;
 
 
+import org.apache.lucene.mobile.ClassValueCache;
+
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
 import java.lang.invoke.MethodType;
@@ -60,7 +62,7 @@ public abstract class AttributeFactory {
   public static final AttributeFactory DEFAULT_ATTRIBUTE_FACTORY = new DefaultAttributeFactory();
   
   private static final class DefaultAttributeFactory extends AttributeFactory {
-    private final ClassValue<MethodHandle> constructors = new ClassValue<MethodHandle>() {
+    private final ClassValueCache<MethodHandle> constructors = new ClassValueCache<MethodHandle>() {
       @Override
       protected MethodHandle computeValue(Class<?> attClass) {
         return findAttributeImplCtor(findImplClass(attClass.asSubclass(Attribute.class)));

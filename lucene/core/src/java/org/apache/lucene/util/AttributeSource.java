@@ -28,6 +28,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import org.apache.lucene.analysis.TokenStream; // for javadocs
+import org.apache.lucene.mobile.ClassValueCache;
 
 /**
  * An AttributeSource contains a list of different {@link AttributeImpl}s,
@@ -147,7 +148,7 @@ public class AttributeSource {
   }
   
   /** a cache that stores all interfaces for known implementation classes for performance (slow reflection) */
-  private static final ClassValue<Class<? extends Attribute>[]> implInterfaces = new ClassValue<Class<? extends Attribute>[]>() {
+  private static final ClassValueCache<Class<? extends Attribute>[]> implInterfaces = new ClassValueCache<Class<? extends Attribute>[]>() {
     @Override
     protected Class<? extends Attribute>[] computeValue(Class<?> clazz) {
       final Set<Class<? extends Attribute>> intfSet = new LinkedHashSet<>();

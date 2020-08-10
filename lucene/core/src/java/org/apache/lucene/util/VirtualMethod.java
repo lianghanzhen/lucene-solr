@@ -17,6 +17,8 @@
 package org.apache.lucene.util;
 
 
+import org.apache.lucene.mobile.ClassValueCache;
+
 import java.lang.reflect.Method;
 import java.util.Collections;
 import java.util.HashSet;
@@ -63,7 +65,7 @@ public final class VirtualMethod<C> {
   private final Class<C> baseClass;
   private final String method;
   private final Class<?>[] parameters;
-  private final ClassValue<Integer> distanceOfClass = new ClassValue<Integer>() {
+  private final ClassValueCache<Integer> distanceOfClass = new ClassValueCache<Integer>() {
     @Override
     protected Integer computeValue(Class<?> subclazz) {
       return Integer.valueOf(reflectImplementationDistance(subclazz));
