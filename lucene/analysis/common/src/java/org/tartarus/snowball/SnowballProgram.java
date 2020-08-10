@@ -314,7 +314,7 @@ public abstract class SnowballProgram {
           if (w.method == null) return w.result;
           boolean res = false;
           try {
-            res = (boolean) w.method.invokeExact(this);
+            res = (boolean) w.method.invoke(this);
           } catch (Error | RuntimeException e) {
             throw e;
           } catch (Throwable e) {
@@ -379,7 +379,7 @@ public abstract class SnowballProgram {
 
           boolean res = false;
           try {
-            res = (boolean) w.method.invokeExact(this);
+            res = (boolean) w.method.invoke(this);
           } catch (Error | RuntimeException e) {
             throw e;
           } catch (Throwable e) {

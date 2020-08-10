@@ -401,7 +401,7 @@ public class MMapDirectory extends FSDirectory {
       }
       final Throwable error = AccessController.doPrivileged((PrivilegedAction<Throwable>) () -> {
         try {
-          unmapper.invokeExact(buffer);
+          unmapper.invoke(buffer);
           return null;
         } catch (Throwable t) {
           return t;

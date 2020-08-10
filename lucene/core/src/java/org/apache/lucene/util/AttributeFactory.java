@@ -73,7 +73,7 @@ public abstract class AttributeFactory {
     @Override
     public AttributeImpl createAttributeInstance(Class<? extends Attribute> attClass) {
       try {
-        return (AttributeImpl) constructors.get(attClass).invokeExact();
+        return (AttributeImpl) constructors.get(attClass).invoke();
       } catch (Error | RuntimeException e) {
         throw e;
       } catch (Throwable e) {
@@ -146,7 +146,7 @@ public abstract class AttributeFactory {
       @Override
       protected A createInstance() {
         try {
-          return (A) constr.invokeExact();
+          return (A) constr.invoke();
         } catch (Error | RuntimeException e) {
           throw e;
         } catch (Throwable e) {
