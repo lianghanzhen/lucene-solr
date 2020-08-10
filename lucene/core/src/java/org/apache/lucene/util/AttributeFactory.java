@@ -45,7 +45,7 @@ public abstract class AttributeFactory {
    */
   static final MethodHandle findAttributeImplCtor(Class<? extends AttributeImpl> clazz) {
     try {
-      return lookup.findConstructor(clazz, NO_ARG_CTOR).asType(NO_ARG_RETURNING_ATTRIBUTEIMPL);
+      return lookup.findConstructor(clazz, NO_ARG_CTOR).asType(MethodType.methodType(clazz));
     } catch (NoSuchMethodException | IllegalAccessException e) {
       throw new IllegalArgumentException("Cannot lookup accessible no-arg constructor for: " + clazz.getName(), e);
     }
@@ -53,8 +53,7 @@ public abstract class AttributeFactory {
   
   private static final MethodHandles.Lookup lookup = MethodHandles.publicLookup();
   private static final MethodType NO_ARG_CTOR = MethodType.methodType(void.class);
-  private static final MethodType NO_ARG_RETURNING_ATTRIBUTEIMPL = MethodType.methodType(AttributeImpl.class);
-  
+
   /**
    * This is the default factory that creates {@link AttributeImpl}s using the
    * class name of the supplied {@link Attribute} interface class by appending <code>Impl</code> to it.
